@@ -1,0 +1,81 @@
+{
+  "dataset_name": "financial_sequence_a_leaderboard_v1_participant",
+  "dataset_version": "a_leaderboard_v1_participant",
+  "leaderboard": "A",
+  "language": "zh-CN",
+  "task_family": "sequence_recommendation",
+  "scenario": "industrial_recommendation_sequence",
+  "description": "匿名化金融场景序列推荐 A 榜数据，用于稀疏反馈下自动化实验挑战的序列任务验证。",
+  "files": {
+    "train.csv": {
+      "description": "训练集，包含目标 item。",
+      "primary_key": "uid",
+      "columns": [
+        "uid",
+        "target_iid",
+        "item_seq_raw",
+        "item_seq_dedup",
+        "item_seq_counts"
+      ]
+    },
+    "test.csv": {
+      "description": "测试集，隐藏目标 item。",
+      "primary_key": "uid",
+      "columns": [
+        "uid",
+        "item_seq_raw",
+        "item_seq_dedup",
+        "item_seq_counts"
+      ]
+    },
+    "sample_submission.csv": {
+      "description": "提交样例。prediction 为按置信度排序的 item id 列表，英文逗号分隔。",
+      "primary_key": "uid",
+      "columns": [
+        "uid",
+        "prediction"
+      ]
+    },
+    "user.csv": {
+      "description": "匿名用户侧特征表。",
+      "primary_key": "uid",
+      "columns": [
+        "uid",
+        "u_cat_01",
+        "u_cat_02",
+        "u_cat_03",
+        "u_cat_04",
+        "u_cat_05",
+        "u_cat_06",
+        "u_cat_07",
+        "u_cat_08"
+      ]
+    },
+    "item.csv": {
+      "description": "匿名 item 侧特征表，也是默认候选 item 集合。",
+      "primary_key": "iid",
+      "columns": [
+        "iid",
+        "i_cat_01",
+        "i_cat_02",
+        "i_cat_03",
+        "i_bucket_01"
+      ]
+    }
+  },
+  "candidate_items": "item.csv 中全部 iid",
+  "submission_format": {
+    "columns": [
+      "uid",
+      "prediction"
+    ],
+    "prediction_format": "comma-separated top-K iid list"
+  },
+  "row_counts": {
+    "train.csv": 40000,
+    "test.csv": 10000,
+    "user.csv": 50000,
+    "item.csv": 2156,
+    "sample_submission.csv": 10000
+  }
+}
